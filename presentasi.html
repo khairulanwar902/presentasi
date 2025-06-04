@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kejahatan Komputer - Presentasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-image, .slide-image {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero-image img, .slide-image img {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img {
+            height: 250px;
+        }
+
+        .hero-image img:hover, .slide-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .slide h1 {
+            font-size: 3.5em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide h2 {
+            font-size: 2.8em;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #34495e;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .group-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .group-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .member {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+
+        .content {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #2c3e50;
+            text-align: justify;
+        }
+
+        .definition-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(116, 185, 255, 0.3);
+        }
+
+        .definition-box h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .types-grid, .impacts-grid, .factors-grid, .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .type-card, .impact-card, .factor-card, .challenge-card {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 25px rgba(232, 67, 147, 0.3);
+        }
+
+        .type-card:hover, .impact-card:hover, .factor-card:hover, .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(232, 67, 147, 0.4);
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #fab1a0, #e17055);
+            box-shadow: 0 10px 25px rgba(250, 177, 160, 0.3);
+        }
+
+        .challenge-card:hover {
+            box-shadow: 0 15px 35px rgba(250, 177, 160, 0.4);
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .type-card h4, .impact-card h4, .factor-card h4, .challenge-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .security-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .security-card {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 184, 148, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 184, 148, 0.4);
+        }
+
+        .security-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .role-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .role-card {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(253, 203, 110, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(253, 203, 110, 0.4);
+        }
+
+        .role-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .regulation-list {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .regulation-list h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .regulation-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .regulation-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1em;
+        }
+
+        .regulation-list li:last-child {
+            border-bottom: none;
+        }
+
+        .conclusion-box {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+                margin: 20px 0;
+            }
+
+            .slide h1 {
+                font-size: 2.5em;
+            }
+
+            .slide h2 {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.4em;
+            }
+
+            .content {
+                font-size: 1.1em;
+            }
+
+            .hero-image img, .slide-image img {
+                height: 150px;
+            }
+
+            .hero-image img {
+                height: 180px;
+            }
+
+            .members {
+                grid-template-columns: 1fr;
+            }
+
+            .types-grid, .impacts-grid, .factors-grid, 
+            .security-section, .challenges-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .role-section {
+                grid-template-columns: 1fr;
+            }
+
+            .card-icon {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .slide {
+                padding: 20px 15px;
+                margin: 15px 0;
+            }
+
+            .slide h1 {
+                font-size: 2em;
+            }
+
+            .slide h2 {
+                font-size: 1.6em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .hero-image img, .slide-image img {
+                height: 120px;
+            }
+
+            .hero-image img {
+                height: 150px;
+            }
+
+            .group-info, .definition-box, .regulation-list, .conclusion-box {
+                padding: 20px;
+            }
+
+            .type-card, .impact-card, .factor-card, 
+            .security-card, .role-card, .challenge-card {
+                padding: 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .slide {
+                background: white;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1 -->
+        <div class="slide">
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Cyber Security" />
+            </div>
+            <h1>KEJAHATAN KOMPUTER</h1>
+            <div class="subtitle">Ancaman dan Upaya Perlindungan di Era Digital</div>
+            
+            <div class="group-info">
+                <h3>Kelompok 3</h3>
+                <p><strong>Universitas Indraprasta PGRI – 2025</strong></p>
+                <div class="members">
+                    <div class="member">Cassiopeia Azzah – 202443500029</div>
+                    <div class="member">Armen Ardiansyah – 202443500006</div>
+                    <div class="member">Rahmad Yusup – 202443502038</div>
+                    <div class="member">Muhamad Khairul Anwar – 202443500034</div>
+                    <div class="member">Muhamad Noval Sofialoh – 202443500033</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Digital Growth" />
+            </div>
+            <h2>Latar Belakang</h2>
+            <div class="content">
+                <p>Perkembangan teknologi informasi yang pesat telah membawa dampak positif sekaligus risiko baru. Salah satunya adalah munculnya kejahatan komputer (cyber crime), yang mengancam individu, organisasi, hingga stabilitas nasional. Sayangnya, literasi digital masyarakat masih rendah, sehingga perlindungan terhadap ancaman ini belum optimal.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Computer Crime Definition" />
+            </div>
+            <h2>Definisi Utama</h2>
+            <div class="definition-box">
+                <h3>Kejahatan Komputer</h3>
+                <p>Tindakan ilegal yang dilakukan melalui atau terhadap sistem komputer dan jaringan. Termasuk pencurian data, peretasan, penipuan online, penyebaran malware, dan aktivitas siber lainnya.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Cyber Threats" />
+            </div>
+            <h2>Jenis-Jenis Kejahatan Komputer</h2>
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="card-icon">🎯</div>
+                    <h4>Hacking</h4>
+                    <p>Akses ilegal ke sistem komputer dan jaringan untuk mencuri atau merusak data</p>
+                </div>
+                <div class="type-card">
+                    <div class="card-icon">🎣</div>
+                    <h4>Phishing</h4>
+                    <p>Penipuan via email atau pesan palsu untuk mencuri informasi pribadi</p>
+                </div>
+                <div class="type-card">
+                    <div class="card-icon">🦠</div>
+                    <h4>Malware</h4>
+                    <p>Software jahat: virus, worm, trojan, ransomware yang merusak sistem</p>
+                </div>
+                <div class="type-card">
+                    <div class="card-icon">💳</div>
+                    <h4>Cyber Fraud</h4>
+                    <p>Penipuan online, carding, dan pencurian identitas digital</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Cyber Attack Impact" />
+            </div>
+            <h2>Dampak Kejahatan Komputer</h2>
+            <div class="impacts-grid">
+                <div class="impact-card">
+                    <div class="card-icon">💰</div>
+                    <h4>Kerugian Finansial</h4>
+                    <p>Kerugian finansial besar bagi individu dan organisasi</p>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon">🔐</div>
+                    <h4>Ancaman Privasi</h4>
+                    <p>Ancaman terhadap privasi dan keamanan data pribadi</p>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon">📉</div>
+                    <h4>Kerusakan Reputasi</h4>
+                    <p>Kerusakan reputasi pribadi maupun organisasi</p>
+                </div>
+                <div class="impact-card">
+                    <div class="card-icon">😰</div>
+                    <h4>Gangguan Psikologis</h4>
+                    <p>Stres dan gangguan psikologis pada korban</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Digital Literacy" />
+            </div>
+            <h2>Faktor Penyebab</h2>
+            <div class="factors-grid">
+                <div class="factor-card">
+                    <div class="card-icon">📚</div>
+                    <h4>Literasi Digital Rendah</h4>
+                    <p>Minimnya pemahaman tentang keamanan digital</p>
+                </div>
+                <div class="factor-card">
+                    <div class="card-icon">🌐</div>
+                    <h4>Akses Internet Luas</h4>
+                    <p>Akses internet yang luas tanpa pengawasan memadai</p>
+                </div>
+                <div class="factor-card">
+                    <div class="card-icon">🛡</div>
+                    <h4>Perlindungan Lemah</h4>
+                    <p>Lemahnya sistem keamanan dan perlindungan data</p>
+                </div>
+                <div class="factor-card">
+                    <div class="card-icon">⚡</div>
+                    <h4>Teknologi vs Regulasi</h4>
+                    <p>Perkembangan teknologi lebih cepat dari regulasi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <div class="slide-image">
+               <img src="https://media.istockphoto.com/id/1435605327/id/foto/konsep-keamanan-siber-teknologi-keamanan-jaringan-global-pebisnis-melindungi-informasi-pribadi.jpg?s=612x612&w=0&k=20&c=YskP55BnJ9PFwPJZhkiUJNGXBA1TGiNH_nk4PXRFOVQ=" alt="">
+            </div>
+            <h2>Upaya Keamanan (1): Teknologi</h2>
+            <div class="security-section">
+                <div class="security-card">
+                    <div class="card-icon">🔥</div>
+                    <h4>Firewall</h4>
+                    <p>Perlindungan jaringan dari akses tidak sah</p>
+                </div>
+                <div class="security-card">
+                    <div class="card-icon">🦠</div>
+                    <h4>Antivirus</h4>
+                    <p>Perlindungan dari malware dan virus</p>
+                </div>
+                <div class="security-card">
+                    <div class="card-icon">🔐</div>
+                    <h4>Enkripsi Data</h4>
+                    <p>Pengamanan informasi sensitif</p>
+                </div>
+                <div class="security-card">
+                    <div class="card-icon">💾</div>
+                    <h4>Backup Data</h4>
+                    <p>Pencadangan data secara berkala</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Digital Education" />
+            </div>
+            <h2>Upaya Keamanan (2): Edukasi</h2>
+            <div class="security-section">
+                <div class="security-card">
+                    <div class="card-icon">🔑</div>
+                    <h4>Password Kuat</h4>
+                    <p>Gunakan kata sandi yang kuat dan unik</p>
+                </div>
+                <div class="security-card">
+                    <div class="card-icon">🔗</div>
+                    <h4>Waspada Link</h4>
+                    <p>Hati-hati dengan tautan mencurigakan</p>
+                </div>
+                <div class="security-card">
+                    <div class="card-icon">🚫</div>
+                    <h4>Hindari Pop-up</h4>
+                    <p>Jangan sembarangan klik iklan/pop-up</p>
+                </div>
+                <div class="security-card">
+                    <div class="card-icon">🔄</div>
+                    <h4>Update Rutin</h4>
+                    <p>Selalu update sistem dan aplikasi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Teamwork" />
+            </div>
+            <h2>Peran Individu & Organisasi</h2>
+            <div class="role-section">
+                <div class="role-card">
+                    <div class="card-icon">👤</div>
+                    <h4>Individu</h4>
+                    <p>Menjaga perilaku aman saat online dan meningkatkan literasi digital</p>
+                </div>
+                <div class="role-card">
+                    <div class="card-icon">🏢</div>
+                    <h4>Organisasi</h4>
+                    <p>Menerapkan kebijakan keamanan siber dan memberikan pelatihan pada staf</p>
+                </div>
+            </div>
+            <div class="content" style="text-align: center; margin-top: 30px;">
+                <p><strong>Kolaborasi adalah kunci utama dalam pencegahan serangan siber</strong></p>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Government Building" />
+            </div>
+            <h2>Peran Pemerintah & Regulasi</h2>
+            <div class="regulation-list">
+                <h3>Regulasi di Indonesia:</h3>
+                <ul>
+                    <li>📋 UU ITE (UU 11/2008 & UU 19/2016)</li>
+                    <li>📋 PP No. 71/2019 tentang Penyelenggaraan Sistem Elektronik</li>
+                    <li>🏛 Lembaga terkait: Polri – Dittipidsiber, BSSN, Kominfo</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Legal Challenges" />
+            </div>
+            <h2>Tantangan Penegakan Hukum</h2>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <div class="card-icon">👻</div>
+                    <h4>Pelaku Anonim</h4>
+                    <p>Pelaku sulit dilacak karena bersifat anonim dan lintas negara</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="card-icon">👨‍💻</div>
+                    <h4>Kurang SDM</h4>
+                    <p>Terbatasnya SDM ahli di bidang forensik digital</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="card-icon">🚀</div>
+                    <h4>Teknologi Cepat</h4>
+                    <p>Cepatnya perkembangan teknologi dibanding regulasi</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="card-icon">📖</div>
+                    <h4>Literasi Hukum</h4>
+                    <p>Rendahnya literasi hukum digital di masyarakat</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12 -->
+        <div class="slide">
+            <div class="slide-image">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Digital Future" />
+            </div>
+            <h2>Kesimpulan</h2>
+            <div class="conclusion-box">
+                <p>Kejahatan komputer adalah ancaman nyata di era digital yang memerlukan pendekatan komprehensif. Perlindungan menyeluruh diperlukan tidak hanya secara teknis, tetapi juga melalui edukasi, regulasi yang kuat, dan penegakan hukum yang efektif.</p>
+                <br>
+                <p><strong>Peran aktif dari individu, organisasi, dan negara sangat menentukan terciptanya ruang digital yang aman dan terpercaya untuk semua.
